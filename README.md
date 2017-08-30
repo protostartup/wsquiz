@@ -1,5 +1,5 @@
 # WSQuiz
-[![CircleCI](https://circleci.com/gh/jonatasbaldin/wsquiz/tree/master.svg?style=svg)](https://circleci.com/gh/jonatasbaldin/wsquiz/tree/master)
+[![CircleCI](https://circleci.com/gh/jonatasbaldin/wsquiz/tree/master.svg?style=svg)](https://circleci.com/gh/jonatasbaldin/wsquiz/tree/master)  
 A quiz app used to demonstrate WebSockets and Django Channels in my talk [Django Unchanneled]().
 
 The frontend was developed by my fellow friend [Douglas Gimli](https://github.com/douglasgimli). Thanks mate :heart:
