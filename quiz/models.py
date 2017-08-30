@@ -8,10 +8,10 @@ from channels import Group
 
 class Player(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    
+
     def __str__(self):
         return self.name
-    
+
     @property
     def time_playing(self):
         """
@@ -71,7 +71,7 @@ class Question(models.Model):
         Giving a player, returns the next random question.
         If there is no questions left to be answered, return False.
         """
-        
+
         qs = cls.objects.all()
 
         if player:
@@ -114,16 +114,19 @@ class Question(models.Model):
 
         last_right_answer = None
         time_playing = None
+        last_question_status = None
         if player:
             last_right_answer = QuestionChoicePlayer.last_right_answer(player)
             time_playing = Player.objects.get(name=player).time_playing
-        
+            last_question_status = QuestionChoicePlayer.last_question_status(player)
+
         result = {
             'text': json.dumps({
                 'next_question': next_question or False,
                 'game_finished': game_finished,
                 'time_playing': time_playing,
                 'last_right_answer': last_right_answer,
+                'last_question_status': last_question_status,
             })
         }
 
@@ -159,9 +162,18 @@ class QuestionChoicePlayer(models.Model):
         """
 
         question = cls.objects.filter(player__name=player).latest().question
-        choice = question.choice_set.filter(right_answer=True).last().text
+        choice = question.choice_set.filter(right_answer=True).last().id
         return choice
 
+    @classmethod
+    def last_question_status(cls, player):
+        """
+        Returns if the Player answered correctly the last question.
+        """
+
+        question = cls.objects.filter(player__name=player).latest()
+        question_status = question.choice.right_answer
+        return question_status
 
     @classmethod
     def send_top_players(cls):
