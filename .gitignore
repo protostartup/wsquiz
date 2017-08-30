@@ -100,4 +100,4 @@ ENV/
 
 # wsquiz
 db.sqlite3
-static/
+/static
