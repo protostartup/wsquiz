@@ -16,7 +16,7 @@ To install some demo data, use:
 docker-compose run web python manage.py loaddata questions.json
 ```
 
-After, just access (your localhost)[http://localhost] and start playing. It's more fun to play with your friends, you may use (ngrok)[https://ngrok.com/] to expose your local network to the Internet!
+After, just access [your localhost](http://localhost) and start playing. It's more fun to play with your friends, you may use [ngrok](https://ngrok.com/) to expose your local network to the Internet!
 
 If you want to create a superuser:
 ```bash
