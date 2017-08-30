@@ -1,0 +1,217 @@
+<!doctype html>
+
+{% load staticfiles %}
+
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "quiz/css/normalize.css" %}">
+    <style media="screen">
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #463958;
+    }
+
+    .player-name {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .player-name__field {
+      padding: 1em 1.8em;
+      border: 0;
+      border-bottom: 2px solid #1FB2B6;
+      width: 50%;
+      color: #FFF;
+      background-color: transparent;
+      font-size: 1.3em;
+      text-align: center;
+    }
+
+    .player-name--hide {
+      display: none;
+    }
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #FFF;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: #FFF;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: #FFF;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: #FFF;
+    }
+    *:focus {
+      outline: none;
+    }
+
+    .player-name__title {
+      color: #FFF;
+      text-align: center;
+      letter-spacing: 2px;
+      margin-bottom: 1em;
+      text-transform: uppercase;
+    }
+
+    .player-name__button {
+      border: 0;
+      margin: 2em 0 0 0;
+      font-size: 1.2em;
+      padding: .7em 3em;
+      text-transform: uppercase;
+      background-color: #1FB2B6;
+      color: #FFF;
+      border-radius: 3px;
+    }
+
+    .game {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .game--show {
+      display: block;
+    }
+
+    .questions {
+      height: 50%;
+      width: 100%;
+      background-color: #463958;
+      text-align: center;
+      padding: 1em;
+    }
+
+    .top-players {
+      width: 100%;
+      height: 50%;
+    }
+
+    .questions h1 {
+      margin: 0 0 1em 0;
+      padding: 0;
+      text-align: center;
+      color:#FFF;
+    }
+
+    .choice {
+      border: 0;
+      margin: .7em 0 0 0;
+      font-size: 1em;
+      padding: .7em 0;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #1FB2B6;
+      color: #FFF;
+      border-radius: 3px;
+      width: 40%;
+    }
+
+    .choice--selected {
+      background-color: #176f71;
+    }
+
+    .submit {
+      border: 0;
+      margin: 1em 0 0 0;
+      font-size: 1.2em;
+      padding: .7em 3em;
+      text-transform: uppercase;
+      background-color: #84739c;
+      color: #FFF;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    .top-players ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    .player {
+      width: 100%;
+      padding: 1em;
+      color: #FFF;
+      position: relative;
+    }
+
+    .player__name {
+      width: 80%;
+      display: inline-block;
+      position: relative;
+    }
+
+    .player__time {
+      width: 10%;
+      display: inline-block;
+      text-align: center;
+      position: relative;
+    }
+
+    .player__percent.player__percent--correct {
+      position: absolute;
+      top: 0;
+      border-bottom: 1px solid #0faf0f;
+      left: 0;
+      background-color: #48d848;
+      width: 60%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .player__percent.player__percent--wrong {
+      position: absolute;
+      background-color: #da4545;
+      height: 100%;
+      border-bottom: 1px solid #b34040;
+      z-index: 0;
+      left: 60%;
+      top: 0;
+      width: 40%;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="player-name js-player-name-container">
+      <h1 class="player-name__title">Enter your username</h1>
+      <input type="text" class="player-name__field js-player-name" name="nickname" maxlength="30" value="" placeholder="Player name" required="">
+      <input type="button" class="player-name__button js-join" value="join">
+    </div>
+    <div class="game js-game">
+      <div class="questions">
+        <h1 class="question"></h1>
+        <div class="questions__holder js-choices">
+        </div>
+        <input type="button" class="submit js-submit" name="" value="Submit">
+      </div>
+      <div class="top-players">
+        <ul class="js-top-players">
+        </ul>
+      </div>
+    </div>
+    <script src="{% static "channels/js/websocketbridge.js" %}"></script>
+    <script src="{% static "quiz/js/jquery-1.12.0.min.js" %}"></script>
+    <script src="{% static "quiz/js/main.js" %}"></script>
+  </body>
+</html>

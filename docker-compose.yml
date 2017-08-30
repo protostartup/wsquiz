@@ -1,0 +1,41 @@
+version: "2"
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - ws
+      - web
+
+  redis:
+    image: redis:alpine
+
+  ws:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: daphne -b 0.0.0.0 -p 8000 wsquiz.asgi:channel_layer
+    volumes:
+      - .:/code
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000 --noworker --noasgi
+    volumes:
+      - .:/code
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: python manage.py runworker
+    volumes:
+      - .:/code
+    links:
+      - redis

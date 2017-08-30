@@ -1,0 +1,7 @@
+machine:
+  python:
+    version: 3.6.1
+
+test:
+  override:
+    -  coverage run --source='.' manage.py test

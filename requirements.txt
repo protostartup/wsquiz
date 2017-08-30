@@ -1,0 +1,4 @@
+Django==1.11.3
+channels==1.1.6
+asgi-redis==1.4.2
+coverage==4.4.1
