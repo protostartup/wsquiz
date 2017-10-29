@@ -10,7 +10,7 @@ var WebsocketBridge = (function() {
   };
 
   var openTopPlayersBridge = function() {
-    console.log("Opening questions bridge " + WS_PATH_TOP_PLAYERS);
+    console.log("Opening top_players bridge " + WS_PATH_TOP_PLAYERS);
     topPlayersWebSocket = new channels.WebSocketBridge();
     topPlayersWebSocket.connect(WS_PATH_TOP_PLAYERS);
     topPlayersWebSocket.listen(onTopPlayersReceived);
@@ -55,9 +55,11 @@ var WebsocketBridge = (function() {
     questionsWebSocket = new channels.WebSocketBridge();
     questionsWebSocket.connect(WS_PATH_ROOT);
     questionsWebSocket.listen(onQuestionReceived);
+    console.log("Connected to " + WS_PATH_ROOT);
   };
 
   var onQuestionReceived = function(data) {
+    console.log("Got questions message ", data);
     if (data.last_right_answer) {
       if (!data.last_question_status) {
         $(".js-choice").addClass("choice--wrong");
