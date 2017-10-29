@@ -123,13 +123,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-REDIS_URL = os.environ.get('REDIS_URL', 'localhost')
-
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [(REDIS_URL, 6379)],
+            'hosts': [(os.environ.get('REDIS_URL'), 6379)],
         },
         'ROUTING': 'wsquiz.routing.channel_routing',
     }
