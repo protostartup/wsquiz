@@ -1,6 +1,12 @@
 machine:
   python:
     version: 3.6.1
+  environment:
+    POSTGRESQL_DB: circle_test
+    POSTGRESQL_USER: ubuntu
+    POSTGRESQL_PASSWORD:
+    POSTGRESQL_HOST: 127.0.0.1
+    POSTGRESQL_PORT: 5432
 
 test:
   override:
