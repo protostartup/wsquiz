@@ -23,7 +23,7 @@ services:
       - .:/code
     environment:
       DATABASE_URL: 'postgres://postgres:123456A!@db:5432/postgres'
-      REDIS_URL: 'redis'
+      REDIS_URL: 'redis://redis:6379'
 
   web:
     build:
@@ -55,4 +55,4 @@ services:
       - redis
     environment:
       DATABASE_URL: 'postgres://postgres:123456A!@db:5432/postgres'
-      REDIS_URL: 'redis'
+      REDIS_URL: 'redis://redis:6379'

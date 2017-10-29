@@ -127,7 +127,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [(os.environ.get('REDIS_URL'), 6379)],
+            'hosts': [os.environ.get('REDIS_URL')],
         },
         'ROUTING': 'wsquiz.routing.channel_routing',
     }
