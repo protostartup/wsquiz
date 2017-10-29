@@ -1,4 +1,7 @@
 Django==1.11.3
+dj-database-url==0.4.2
 channels==1.1.6
 asgi-redis==1.4.2
 coverage==4.4.1
+psycopg2==2.7.3.2
+whitenoise==3.3.1

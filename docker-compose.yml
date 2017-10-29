@@ -21,6 +21,9 @@ services:
     command: daphne -b 0.0.0.0 -p 8000 wsquiz.asgi:channel_layer
     volumes:
       - .:/code
+    environment:
+      DATABASE_URL: 'postgres://postgres:123456A!@db:5432/postgres'
+      REDIS_URL: 'redis'
 
   web:
     build:
@@ -29,6 +32,17 @@ services:
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000 --noworker --noasgi"
     volumes:
       - .:/code
+    environment:
+      DATABASE_URL: 'postgres://postgres:123456A!@db:5432/postgres'
+
+  db:
+    image: postgres
+    volumes:
+      - "./docker/db/pgdata:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: '123456A!'
+    links:
+      - web
 
   worker:
     build:
@@ -39,3 +53,6 @@ services:
       - .:/code
     links:
       - redis
+    environment:
+      DATABASE_URL: 'postgres://postgres:123456A!@db:5432/postgres'
+      REDIS_URL: 'redis'

@@ -101,3 +101,4 @@ ENV/
 # wsquiz
 db.sqlite3
 /static
+docker/db/
