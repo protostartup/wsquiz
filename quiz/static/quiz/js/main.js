@@ -60,6 +60,7 @@ var WebsocketBridge = (function() {
 
   var onQuestionReceived = function(data) {
     console.log("Got questions message ", data);
+    $(".player-name-header").html("Your username: " + Player.get());
     if (data.last_right_answer) {
       if (!data.last_question_status) {
         $(".js-choice").addClass("choice--wrong");
@@ -98,7 +99,7 @@ var WebsocketBridge = (function() {
 
     // FinishGame
     $(".js-choices, .js-submit").hide();
-    $(".question").html(Player.get() + "<br>[Thanks for playing!]");
+    $(".question").html("<br>[Thanks for playing!]");
   };
 
   var bindChoices = function() {
@@ -138,7 +139,7 @@ var WebsocketBridge = (function() {
 
 var Interface = (function() {
   var join = function(event) {
-    var playerName = $(".js-player-name").val();
+    var playerName = $(".js-player-name").val() + Math.floor((Math.random() * 1000) + 1);
     if (!playerName) {
       $(".js-player-name").addClass("player-name__field--error");
       return;
