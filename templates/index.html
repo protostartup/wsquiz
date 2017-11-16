@@ -223,7 +223,7 @@
     <div class="player-name js-player-name-container">
       <h1 class="player-name__title">Your username</h1>
       <form method="post" action="" onSubmit="Interface.join(); return false;" class="player__form">
-        <input type="text" class="player-name__field js-player-name" name="nickname" maxlength="30" value="" placeholder="Username" required="">
+        <input type="text" class="player-name__field js-player-name" name="nickname" maxlength="30" value="" placeholder="Username" required="" onfocus="$(this).attr('placeholder', '');" onblur="$(this).attr('placeholder', 'Username');">
         <input type="submit" class="player-name__button js-join" value="join">
       </form>
     </div>
